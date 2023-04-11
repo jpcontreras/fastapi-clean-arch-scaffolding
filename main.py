@@ -1,13 +1,15 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
+import os
+from src.app.infrastructure.routes.v1.health_checks import HealthRouter
 
-app = FastAPI()
+load_dotenv()
+
+# Core Application Instance
+app = FastAPI(
+    title=os.getenv('APP_NAME'),
+    version=os.getenv('API_VERSION'),
+)
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+app.include_router(HealthRouter)
