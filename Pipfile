@@ -9,6 +9,7 @@ uvicorn = "<0.16.0,>=0.15.0"
 python-dotenv = "*"
 pydantic = ">=1.8.0,<2.0.0"
 fastapi-sso = "*"
+python-multipart = "*"
 
 [dev-packages]
 
