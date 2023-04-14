@@ -4,3 +4,12 @@ services:
     build: .
     ports:
       - "8000:8000"
+
+  postgres_db:
+    image: postgis/postgis
+    environment:
+      POSTGRES_USER: jkaub
+      POSTGRES_PASSWORD: jkaub
+      POSTGRES_DB: stations
+#    volumes:
+#      - ./db:/var/lib/postgresql/data

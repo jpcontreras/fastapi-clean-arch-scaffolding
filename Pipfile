@@ -10,6 +10,7 @@ python-dotenv = "*"
 pydantic = ">=1.8.0,<2.0.0"
 fastapi-sso = "*"
 python-multipart = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 

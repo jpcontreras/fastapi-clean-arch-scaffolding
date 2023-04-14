@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#Dockerized database folder
+db/
+
+
 # IDE settings folders
 .idea/
 
