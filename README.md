@@ -32,6 +32,18 @@ uvicorn main:app --reload
 ## 5. Tests
 Instrucciones para correr las pruebas automatizadas incluidas en el proyecto.
 
+## Migrations
+Create any table migration
+```shell
+docker-compose run app alembic revision -m "create users table"
+```
+Exceute migration
+```shell
+docker-compose run app alembic upgrade head
+```
+
+
+
 ## 6. License
 MIT-licensed open source project.
 
