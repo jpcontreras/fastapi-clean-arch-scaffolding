@@ -1,15 +1,21 @@
 version: '3'
 services:
+  db:
+    image: postgres:13.5
+    restart: always
+    environment:
+      - POSTGRES_USER=jkaub
+      - POSTGRES_PASSWORD=jkaub
+      - POSTGRES_DB=apiScaffold
+    ports:
+      - '5432:5432'
+
   app:
     build: .
+    command: bash -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+    env_file: .env
     ports:
       - "8000:8000"
-
-  postgres_db:
-    image: postgis/postgis
-    environment:
-      POSTGRES_USER: jkaub
-      POSTGRES_PASSWORD: jkaub
-      POSTGRES_DB: stations
-#    volumes:
-#      - ./db:/var/lib/postgresql/data
+    depends_on:
+      - db
+    restart: always

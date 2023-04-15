@@ -7,10 +7,13 @@ name = "pypi"
 fastapi = ">=0.68.0,<0.69.0"
 uvicorn = "<0.16.0,>=0.15.0"
 python-dotenv = "*"
-pydantic = ">=1.8.0,<2.0.0"
+pydantic = "*"
 fastapi-sso = "*"
 python-multipart = "*"
 sqlalchemy = "*"
+fastapi-sqlalchemy = "*"
+alembic = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
