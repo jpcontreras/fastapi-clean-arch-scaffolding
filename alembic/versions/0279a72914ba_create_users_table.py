@@ -9,7 +9,7 @@ from alembic import op
 import sqlalchemy as sa
 from sqlalchemy import func
 
-from src.app.infrastructure.db.timestamp_columns import _add_timestamp_columns
+from src.app.infrastructure.db.alembic_common import _add_timestamp_columns
 
 # revision identifiers, used by Alembic.
 revision = '0279a72914ba'
