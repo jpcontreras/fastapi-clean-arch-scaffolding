@@ -11,4 +11,4 @@ class AuthUserModel(Base):
     uid = Column(String)
     email = Column(String, unique=True, index=True)
     provider = Column(Enum(AuthProvider))
-    is_blocked = Column(Boolean, default=True)
+    is_blocked = Column(Boolean, default=False)

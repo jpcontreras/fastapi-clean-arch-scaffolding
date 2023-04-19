@@ -7,8 +7,6 @@ class FacebookUserAuthenticator:
         self.auth_repository = auth_repository
 
     def run(self, user: AuthFacebookUserDto):
-        print('---------------  ----------------')
-        # print(user)
         auth_user = self.auth_repository.search(user.email)
         if not bool(auth_user):
             auth_user = self.auth_repository.create(user)

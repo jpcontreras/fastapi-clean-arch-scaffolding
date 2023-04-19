@@ -24,7 +24,7 @@ def upgrade() -> None:
         sa.Column('id', sa.UUID, primary_key=True),
         sa.Column('user_id', sa.UUID, sa.ForeignKey('users.id'), nullable=False),
         sa.Column('first_name', sa.String, nullable=False),
-        sa.Column('last_name', sa.String, nullable=False),
+        sa.Column('last_name', sa.String, nullable=True),
         sa.Column('alias_name', sa.String, nullable=True),
         sa.Column('image_url', sa.String, nullable=True)
     )
