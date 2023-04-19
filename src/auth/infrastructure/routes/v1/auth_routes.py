@@ -3,8 +3,10 @@ from fastapi import APIRouter, Request, Depends
 from fastapi_sso.sso.facebook import FacebookSSO
 import os
 
+from sqlalchemy.orm import Session
+
+from src.app.infrastructure.db.postgresql_connect import get_db
 from src.auth.application.facebook_user_authenticator import FacebookUserAuthenticator
-from src.auth.domain.auth_repository import AuthRepository
 from src.auth.infrastructure.postgres_auth_repository import PostgresAuthRepository
 
 load_dotenv()
@@ -19,15 +21,20 @@ sso = FacebookSSO(
     redirect_uri="http://localhost:8000/v1/auth/facebook/callback",
 )
 
-repository: AuthRepository = PostgresAuthRepository()
-authenticator: FacebookUserAuthenticator = FacebookUserAuthenticator(repository)
+
+# Dependency
+def create_facebook_user_authenticator_depends(db: Session = Depends(get_db)):
+    return FacebookUserAuthenticator(PostgresAuthRepository(db))
+
 
 @AuthRouter.get("/facebook/login")
 async def facebook_login():
     return await sso.get_login_redirect()
 
+
 @AuthRouter.get("/facebook/callback")
-async def auth_callback(request: Request, interactor: FacebookUserAuthenticator = Depends()):
+async def auth_callback(request: Request,
+                        interactor: FacebookUserAuthenticator = Depends(create_facebook_user_authenticator_depends)):
     user = await sso.verify_and_process(request)
     interactor.run(user)
     return user

@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class AuthProvider(str, Enum):
+class AuthProvider(Enum):
     facebook = 'facebook'
     google = 'google'
     email = 'email'

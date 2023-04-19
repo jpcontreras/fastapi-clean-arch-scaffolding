@@ -8,5 +8,5 @@ class FacebookUserAuthenticator:
 
     def run(self, user: AuthFacebookUserDto):
         print('---------------  ----------------')
-        # self.auth_repository.search(user.email)
-        print(user)
+        # print(user)
+        self.auth_repository.search(user.email)
