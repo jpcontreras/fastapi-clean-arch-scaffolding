@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6c70b0a3889f81c3d65bc452c7982ae6d07cbe626f0e25037cebc0a65e572747"
+            "sha256": "a264ba8248126166139aa05e46ef2dc28c427d2953c0fa982aee3bd5b2b9a96d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -79,6 +79,14 @@
             ],
             "index": "pypi",
             "version": "==0.6.4"
+        },
+        "flask": {
+            "hashes": [
+                "sha256:7eb373984bf1c770023fce9db164ed0c3353cd0b53f130f4693da0ca756a2e6d",
+                "sha256:c0bec9477df1cb867e5a67c9e1ab758de9cb4a3e52dd70681f59fa40a62b3f2d"
+            ],
+            "index": "pypi",
+            "version": "==2.2.3"
         },
         "greenlet": {
             "hashes": [
@@ -176,6 +184,22 @@
                 "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"
             ],
             "version": "==3.4"
+        },
+        "itsdangerous": {
+            "hashes": [
+                "sha256:2c2349112351b88699d8d4b6b075022c0808887cb7ad10069318a8b0bc88db44",
+                "sha256:5dbbc68b317e5e42f327f9021763545dc3fc3bfe22e6deb96aaf1fc38874156a"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==2.1.2"
+        },
+        "jinja2": {
+            "hashes": [
+                "sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852",
+                "sha256:6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==3.1.2"
         },
         "mako": {
             "hashes": [
@@ -479,6 +503,14 @@
             ],
             "index": "pypi",
             "version": "==0.1.3"
+        },
+        "werkzeug": {
+            "hashes": [
+                "sha256:2e1ccc9417d4da358b9de6f174e3ac094391ea1d4fbef2d667865d819dfd0afe",
+                "sha256:56433961bc1f12533306c624f3be5e744389ac61d722175d543e1751285da612"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==2.2.3"
         }
     },
     "develop": {}

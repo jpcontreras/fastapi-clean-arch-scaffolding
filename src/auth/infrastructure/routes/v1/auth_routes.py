@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 
 from src.app.infrastructure.db.postgresql_connect import get_db
 from src.auth.application.facebook_user_authenticator import FacebookUserAuthenticator
+from src.auth.infrastructure.auth_flask_session import current_session, destroy_session
 from src.auth.infrastructure.postgres_auth_repository import PostgresAuthRepository
 
 load_dotenv()
@@ -23,8 +24,8 @@ sso = FacebookSSO(
 
 
 # Dependency
-def create_facebook_user_authenticator_depends(db: Session = Depends(get_db)):
-    return FacebookUserAuthenticator(PostgresAuthRepository(db))
+def create_facebook_user_authenticator_depends(db_session: Session = Depends(get_db)):
+    return FacebookUserAuthenticator(PostgresAuthRepository(db_session))
 
 
 @AuthRouter.get("/facebook/login")
@@ -38,3 +39,8 @@ async def auth_callback(request: Request,
     user = await sso.verify_and_process(request)
     interactor.run(user)
     return user
+
+
+@AuthRouter.delete("/logout")
+async def logout():
+    destroy_session()
