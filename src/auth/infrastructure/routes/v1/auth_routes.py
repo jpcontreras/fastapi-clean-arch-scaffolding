@@ -19,7 +19,7 @@ AuthRouter = APIRouter(
 sso = FacebookSSO(
     client_id=os.getenv('FB_CLIENT_ID'),
     client_secret=os.getenv('FB_CLIENT_SECRET'),
-    redirect_uri="http://localhost:8000/v1/auth/facebook/callback",
+    redirect_uri=os.getenv('FB_REDIRECT'),
 )
 
 
