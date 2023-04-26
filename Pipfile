@@ -15,7 +15,6 @@ fastapi-sqlalchemy = "*"
 alembic = "*"
 psycopg2-binary = "*"
 void = "*"
-flask = "*"
 
 [dev-packages]
 
