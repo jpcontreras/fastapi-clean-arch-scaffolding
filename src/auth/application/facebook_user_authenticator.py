@@ -1,8 +1,7 @@
 from fastapi import HTTPException
-
+from starlette import status
 from src.auth.application.auth_facebook_user_dto import AuthFacebookUserDto
 from src.auth.domain.auth_repository import AuthRepository
-# from src.auth.infrastructure.auth_flask_session import create_session
 
 
 class FacebookUserAuthenticator:
@@ -15,10 +14,14 @@ class FacebookUserAuthenticator:
             auth_user = self.auth_repository.create(user)
 
         if auth_user.is_blocked:
-            raise HTTPException(status_code=401, detail='User Blocked')
-        if auth_user.uid == user.id:
-            # create_session(user.id)
-            pass
-        else:
-            raise HTTPException(status_code=401, detail='Incorrect login provider')
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail='User Blocked'
+            )
+        if auth_user.uid != user.id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Incorrect credentials access",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
         return auth_user

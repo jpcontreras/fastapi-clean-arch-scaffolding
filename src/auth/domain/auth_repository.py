@@ -6,7 +6,7 @@ from src.auth.infrastructure.auth_user_model import AuthUserModel
 
 class AuthRepository(ABC):
     @abstractmethod
-    def search(self, user_email: str) -> str:
+    def search(self, user_email: str) -> AuthUserModel:
         pass
 
     @abstractmethod

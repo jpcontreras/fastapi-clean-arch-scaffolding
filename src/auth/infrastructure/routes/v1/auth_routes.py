@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from src.app.infrastructure.db.postgresql_connect import get_db
 from src.app.infrastructure.settings import Settings
 from src.auth.application.facebook_user_authenticator import FacebookUserAuthenticator
+from src.auth.application.generate_token import GenerateToken
 from src.auth.infrastructure.postgres_auth_repository import PostgresAuthRepository
 
 settings = Settings()
@@ -31,10 +32,11 @@ async def facebook_login():
 
 @AuthRouter.get("/facebook/callback")
 async def auth_callback(request: Request,
-                        interactor: FacebookUserAuthenticator = Depends(create_facebook_user_authenticator_depends)):
+                        fb_authenticator: FacebookUserAuthenticator = Depends(create_facebook_user_authenticator_depends),
+                        generate_token: GenerateToken = Depends()):
     user = await sso.verify_and_process(request)
-    interactor.run(user)
-    return user
+    auth_user = fb_authenticator.run(user)
+    return generate_token.run(auth_user)
 
 
 @AuthRouter.delete("/logout")
