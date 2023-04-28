@@ -8,11 +8,11 @@ from src.auth.infrastructure.auth_user_model import AuthUserModel
 settings = Settings()
 
 
-class GenerateToken:
+class GenerateUserToken:
     def run(self, auth_user: AuthUserModel) -> Token:
         access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINS)
         access_token = self._create_access_token(
-            data={"sub": auth_user.uid}, expires_delta=access_token_expires
+            data={"sub": auth_user.email}, expires_delta=access_token_expires
         )
         return Token(access_token=access_token, token_type="bearer")
 
@@ -23,5 +23,4 @@ class GenerateToken:
         else:
             expire = datetime.utcnow() + timedelta(minutes=15)
         to_encode.update({"exp": expire})
-        encoded_jwt = jwt.encode(to_encode, settings.ACCESS_TOKEN_SECRET_KEY, algorithm=settings.ACCESS_TOKEN_ALGORITHM)
-        return encoded_jwt
+        return jwt.encode(to_encode, settings.ACCESS_TOKEN_SECRET_KEY, algorithm=settings.ACCESS_TOKEN_ALGORITHM)
