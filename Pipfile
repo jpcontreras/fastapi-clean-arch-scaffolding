@@ -17,6 +17,7 @@ psycopg2-binary = "*"
 void = "*"
 python-jose = {extras = ["cryptography"], version = "*"}
 passlib = "*"
+pytest = "*"
 
 [dev-packages]
 

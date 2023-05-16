@@ -42,6 +42,8 @@ src/                                    # root folder of the project source code
         ├── auth_user_model.py              # user model implemented with pydantic ORM library
         ├── auth_user_profile_model.py      # user profile model implemented with pydantic ORM library
         ├── postgres_auth_repository.py     # repository class to create and search users registrated with postgresql
+tests/
+    ├──
 .env.test
 .gitignore                                  # a file that list files to be excluded in GitHub repository
 alembic.ini                                 # Automatic database migration configuration
