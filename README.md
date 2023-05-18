@@ -104,7 +104,3 @@ docker-compose run [app service] alembic upgrade head
 
 ## License
 MIT-licensed open source project.
-
-
-## To-Do:
-* Running Tests Section
