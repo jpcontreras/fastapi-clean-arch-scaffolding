@@ -18,6 +18,7 @@ void = "*"
 python-jose = {extras = ["cryptography"], version = "*"}
 passlib = "*"
 pytest = "*"
+pytest-mock = "*"
 
 [dev-packages]
 

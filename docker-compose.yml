@@ -19,3 +19,11 @@ services:
     depends_on:
       - db
     restart: always
+
+  tests:
+    build: .
+    command: bash -c "pytest"
+    env_file: .env
+    depends_on:
+      - db
+    restart: always

@@ -7,8 +7,6 @@ Create Date: 2023-04-14 22:18:45.384100
 """
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy import func
-
 from src.app.infrastructure.db.alembic_common import _add_timestamp_columns
 
 # revision identifiers, used by Alembic.
