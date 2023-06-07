@@ -12,10 +12,10 @@ time and improving software quality.
 alembic/                                # folder to aggregate all database migrations generated with alembic library
 ├── versions/                           # migrations folder
 ├── env.py                              # file to confige data base connection and format and structure migrations
-src/                                    # root folder of the project source code. Each folder within this is a domain component
+src/                                    # root folder of the project source code. Each folder within this is a infrastructure component
 ├── app/                                # principal component dedicated to application configution (database, enviroment variables, ...)
     ├── application/                    # folder to add application specific logic (uses cases)adn DTOs files 
-    ├── domain/                         # folder to add interfaces to access to business objects (repositories) and domain entities (mappers)
+    ├── domain/                         # folder to add interfaces to access to business objects (repositories) and infrastructure entities (mappers)
     ├── infrastructure                  # folder to add adapters to connecto with differents interfaces types (database services, web services, notification services, ...)
         ├── db/                         
             ├── alembic_common.py       # common functions to add column fields in the alembic migrations
