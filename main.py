@@ -17,4 +17,4 @@ app = FastAPI(
 
 app.include_router(HealthRouter)
 app.include_router(AuthRouter)
-# app.include_router(BasicAuthRouter)
+app.include_router(BasicAuthRouter)

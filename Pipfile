@@ -16,9 +16,9 @@ alembic = "*"
 psycopg2-binary = "*"
 void = "*"
 python-jose = {extras = ["cryptography"], version = "*"}
-passlib = "*"
 pytest = "*"
 pytest-mock = "*"
+passlib = {extras = ["bcrypt"], version = "*"}
 
 [dev-packages]
 
