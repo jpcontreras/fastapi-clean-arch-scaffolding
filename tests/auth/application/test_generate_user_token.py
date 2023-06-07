@@ -2,15 +2,15 @@ import time
 
 from src.app.infrastructure.settings import Settings
 from src.auth.application.generate_user_token import GenerateUserToken
-from src.auth.infrastructure.auth_user_model import AuthUserModel
 from jose import jwt
+from src.common.infrastructure.user_model import UserModel
 
 settings = Settings()
 
 
 class TestGenerateUserToken:
     facebook_uuid = '123456'
-    auth_user = AuthUserModel(
+    auth_user = UserModel(
         id='1',
         uid=facebook_uuid,
         email='test@example.com',
