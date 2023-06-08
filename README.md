@@ -40,7 +40,7 @@ src/                                    # root folder of the project source code
         ├── auth_depends.py                 # authentication functions to add as dependency injection in routes and can use the interactor class 
         ├── auth_token_model.py             # token models implemented with pydantic ORM library
         ├── auth_user_model.py              # user model implemented with pydantic ORM library
-        ├── user_profile_model.py      # user profile model implemented with pydantic ORM library
+        ├── user_profile_entity.py      # user profile model implemented with pydantic ORM library
         ├── postgres_auth_repository.py     # repository class to create and search users registrated with postgresql
 tests/
     ├──

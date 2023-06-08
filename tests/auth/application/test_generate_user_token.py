@@ -3,7 +3,7 @@ import time
 from src.app.infrastructure.settings import Settings
 from src.auth.application.generate_user_token import GenerateUserToken
 from jose import jwt
-from src.common.infrastructure.user_model import UserModel
+from src.common.infrastructure.user_entity import UserModel
 
 settings = Settings()
 

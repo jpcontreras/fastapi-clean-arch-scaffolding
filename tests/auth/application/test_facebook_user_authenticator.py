@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 from src.auth.application.auth_facebook_user_dto import AuthFacebookUserDto
 from src.auth.application.facebook_user_authenticator import FacebookUserAuthenticator
 from src.auth.domain.auth_repository import AuthRepository
-from src.common.infrastructure.user_model import UserModel
+from src.common.infrastructure.user_entity import UserModel
 
 
 class TestFacebookUserAuthenticator:

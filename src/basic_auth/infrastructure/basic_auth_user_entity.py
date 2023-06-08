@@ -1,6 +1,6 @@
 from sqlalchemy import Column, UUID, String, Enum, Boolean
-from src.common.infrastructure.user_model import UserModel
+from src.common.infrastructure.user_entity import UserEntity
 
 
-class BasicAuthUserModel(UserModel):
+class BasicAuthUserEntity(UserEntity):
     encrypted_password = Column(String, nullable=False)

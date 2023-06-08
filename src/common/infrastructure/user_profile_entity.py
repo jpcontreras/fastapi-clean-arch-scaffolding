@@ -3,7 +3,7 @@ from sqlalchemy import Column, UUID, ForeignKey, String
 from src.app.infrastructure.db.postgresql_connect import Base
 
 
-class UserProfileModel(Base):
+class UserProfileEntity(Base):
     __tablename__ = 'user_profiles'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True, nullable=False)

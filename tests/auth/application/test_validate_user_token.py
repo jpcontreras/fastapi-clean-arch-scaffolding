@@ -6,7 +6,7 @@ from starlette import status
 from src.auth.application.generate_user_token import GenerateUserToken
 from src.auth.application.validate_user_token import ValidateUserToken
 from src.auth.domain.auth_repository import AuthRepository
-from src.common.infrastructure.user_model import UserModel
+from src.common.infrastructure.user_entity import UserModel
 
 
 class TestValidateUserToken:

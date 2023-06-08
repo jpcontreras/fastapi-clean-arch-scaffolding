@@ -3,13 +3,13 @@ from typing import Optional
 from jose import jwt
 from src.app.infrastructure.settings import Settings
 from src.auth.infrastructure.auth_token_model import Token
-from src.common.infrastructure.user_model import UserModel
+from src.common.infrastructure.user_entity import UserEntity
 
 settings = Settings()
 
 
 class GenerateUserToken:
-    def run(self, auth_user: UserModel) -> Token:
+    def run(self, auth_user: UserEntity) -> Token:
         access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINS)
         access_token = self._create_access_token(
             data={"sub": auth_user.email}, expires_delta=access_token_expires
