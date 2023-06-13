@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from src.basic_auth.application.basic_auth_user_dto import BasicAuthUserDto
+from src.basic_auth.domain.basic_auth_user_dto import BasicAuthUserDto
 from src.basic_auth.domain.basic_auth_repository import BasicAuthRepository
 from src.basic_auth.infrastructure.basic_auth_user_entity import BasicAuthUserEntity
 from src.common.infrastructure.user_profile_entity import UserProfileEntity
