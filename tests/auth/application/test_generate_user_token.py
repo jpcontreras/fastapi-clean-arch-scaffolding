@@ -3,14 +3,14 @@ import time
 from src.app.infrastructure.settings import Settings
 from src.auth.application.generate_user_token import GenerateUserToken
 from jose import jwt
-from src.common.infrastructure.user_entity import UserModel
+from src.common.infrastructure.user_entity import UserEntity
 
 settings = Settings()
 
 
 class TestGenerateUserToken:
     facebook_uuid = '123456'
-    auth_user = UserModel(
+    auth_user = UserEntity(
         id='1',
         uid=facebook_uuid,
         email='test@example.com',

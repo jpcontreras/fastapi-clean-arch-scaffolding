@@ -19,6 +19,8 @@ python-jose = {extras = ["cryptography"], version = "*"}
 pytest = "*"
 pytest-mock = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
+requests = "*"
+httpx = "*"
 
 [dev-packages]
 
