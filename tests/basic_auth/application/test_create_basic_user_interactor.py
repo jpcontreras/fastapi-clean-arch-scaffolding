@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-import pytest
+from starlette import status
 
 from src.auth.domain.auth_provider import AuthProvider
 from src.basic_auth.application.create_basic_user_interactor import CreateBasicUserInteractor
@@ -25,7 +25,7 @@ class TestCreateBasicUserInteractor:
         encrypted_password = txt_hasher.hash_text()
 
         basic_auth_user_entity = BasicAuthUserEntity()
-        basic_auth_user_entity.id = 1
+        basic_auth_user_entity.id = '5364c657-e6a9-4c66-9a09-15a56933af45'
         basic_auth_user_entity.email = self.auth_user_dto.email
         basic_auth_user_entity.first_name = self.auth_user_dto.first_name
         basic_auth_user_entity.last_name = self.auth_user_dto.last_name
@@ -36,7 +36,11 @@ class TestCreateBasicUserInteractor:
 
         # Case 1: All fields are valid
         result = interactor.run(self.auth_user_dto)
-        assert result == basic_auth_user_entity
+        assert result.data[0].email == basic_auth_user_entity.email
+        assert result.data[0].first_name == basic_auth_user_entity.first_name
+        assert result.data[0].last_name == basic_auth_user_entity.last_name
+        assert result.http_status == status.HTTP_201_CREATED
+        assert result.message == 'Usuario creado exitosamente'
 
         # Case 2: Verify that the password is encrypted
         result = txt_hasher.verify_text(encrypted_password)

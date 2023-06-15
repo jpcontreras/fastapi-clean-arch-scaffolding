@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field, validator
+from typing import Optional
+from uuid import UUID
+from pydantic import Field, validator
 from src.app.domain.input_validator import InputValidator
 from src.app.domain.base_dto import BaseDto
 from src.auth.domain.auth_provider import AuthProvider
@@ -6,8 +8,9 @@ from src.basic_auth.domain.basic_auth_user_provider import BasicAuthUserProvider
 
 
 class BasicAuthUserDto(BaseDto):
+    id: Optional[UUID] = None
     email: str
-    password: str
+    password: Optional[str] = None
     first_name: str
     last_name: str
     provider: str = Field(default=AuthProvider.email.value)
