@@ -1,18 +1,16 @@
 from unittest.mock import MagicMock
-
 import pytest
 from fastapi import HTTPException
 from starlette import status
-
 from src.auth.application.generate_user_token import GenerateUserToken
 from src.auth.application.validate_user_token import ValidateUserToken
 from src.auth.domain.auth_repository import AuthRepository
-from src.auth.infrastructure.auth_user_model import AuthUserModel
+from src.common.infrastructure.user_entity import UserEntity
 
 
 class TestValidateUserToken:
     facebook_uuid = '123456'
-    auth_user = AuthUserModel(
+    auth_user = UserEntity(
         id='1',
         uid=facebook_uuid,
         email='test@example.com',

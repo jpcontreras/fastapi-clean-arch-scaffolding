@@ -4,7 +4,7 @@ from src.app.infrastructure.db.postgresql_connect import Base
 from src.auth.domain.auth_provider import AuthProvider
 
 
-class AuthUserModel(Base):
+class UserEntity(Base):
     __tablename__ = 'users'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True, nullable=False)

@@ -23,7 +23,11 @@ services:
   tests:
     build: .
     command: bash -c "pytest"
-    env_file: .env
+#    env_file: .env
+    environment:
+      - POSTGRES_USER=jkaub
+      - POSTGRES_PASSWORD=jkaub
+      - POSTGRES_DB=apiScaffold
     depends_on:
       - db
     restart: always
