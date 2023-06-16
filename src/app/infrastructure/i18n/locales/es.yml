@@ -1,0 +1,4 @@
+es:
+    entities:
+        user:
+            created: Usuario creado exitosamente

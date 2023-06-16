@@ -1,0 +1,4 @@
+en:
+    entities:
+        user:
+            created: User created successfully.

@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
-
 from starlette import status
-
+from src.app.infrastructure.i18n.settings import translate, DEFAULT_LOCALE
 from src.auth.domain.auth_provider import AuthProvider
 from src.basic_auth.application.create_basic_user_interactor import CreateBasicUserInteractor
 from src.basic_auth.domain.basic_auth_repository import BasicAuthRepository
@@ -40,10 +39,11 @@ class TestCreateBasicUserInteractor:
         assert result.data[0].first_name == basic_auth_user_entity.first_name
         assert result.data[0].last_name == basic_auth_user_entity.last_name
         assert result.http_status == status.HTTP_201_CREATED
-        assert result.message == 'Usuario creado exitosamente'
+        assert result.message == translate(DEFAULT_LOCALE, 'entities.user.created')
 
         # Case 2: Verify that the password is encrypted
         result = txt_hasher.verify_text(encrypted_password)
         assert result is True
+
 
 
