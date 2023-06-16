@@ -1,8 +1,5 @@
-import copy
-
 import pytest
 from pydantic import ValidationError
-
 from src.app.infrastructure.i18n.translate import Translate
 from src.auth.domain.auth_provider import AuthProvider
 from src.basic_auth.domain.basic_auth_user_dto import BasicAuthUserDto

@@ -8,3 +8,7 @@ class BasicAuthRepository(ABC):
     @abstractmethod
     def create(self, user: BasicAuthUserDto) -> BasicAuthUserEntity:
         pass
+
+    @abstractmethod
+    def get_by_email(self, email: str) -> BasicAuthUserEntity:
+        pass

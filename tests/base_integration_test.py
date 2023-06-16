@@ -1,9 +1,7 @@
 import os
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from starlette.testclient import TestClient
-
 from main import app
 from src.app.infrastructure.db.postgresql_connect import get_db
 from src.app.infrastructure.i18n.translate import Translate

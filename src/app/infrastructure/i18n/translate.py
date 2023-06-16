@@ -17,7 +17,3 @@ class Translate(TranslateService):
 
     def text(self, text: str, **kwargs) -> str:
         return self.i18n.gettext(self.default_locale, text, **kwargs)
-
-
-# translate = Translate()
-# print(translate.text('inputs.validation.not_empty', name='Field'))

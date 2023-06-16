@@ -1,7 +1,17 @@
 es:
+    # This is the translation for the controlled errors in the application
+    api:
+        errors:
+            email_already_exists:
+                code: "002"
+                message: "Correo electrónico ya se encuentra en uso"
+                description: "El correo que se ingresa para el registro ya esta en uso"
+
+
+    # This is the translation for the Entity classes and their attributes
     entities:
         user:
-            created: Usuario creado exitosamente
+            created: "Usuario creado exitosamente"
             attributes:
                 provider:
                     not_valid: "El atributo 'provider' no es válido"
