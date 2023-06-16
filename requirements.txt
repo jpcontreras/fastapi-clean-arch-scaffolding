@@ -27,11 +27,13 @@ psycopg2-binary==2.9.6
 pyasn1==0.5.0
 pycparser==2.21
 pydantic==1.10.9
+pyi18n-v2==1.2.1
 pytest==7.3.2
-pytest-mock==3.10.0
+pytest-mock==3.11.1
 python-dotenv==1.0.0
 python-jose[cryptography]==3.3.0
 python-multipart==0.0.6
+pyyaml==6.0 ; python_version >= '3.6'
 requests==2.31.0
 rfc3986[idna2008]==1.5.0
 rsa==4.9 ; python_version >= '3.6' and python_version < '4'

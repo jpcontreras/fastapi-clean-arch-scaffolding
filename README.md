@@ -23,7 +23,7 @@ src/                                    # root folder of the project source code
         ├── routes/                     # folder to add route versions
             ├── v1/
                 ├── health_checks.py    # routes to application liveness test
-        settings.py                     # configuration file for environment variables and others
+        translate.py                     # configuration file for environment variables and others
 ├── auth/                               # authentication component
     ├── application/
         ├── auth_facebook_user_dto.py       # DTO class with attributes to receive data of facebook when be authenticated

@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
-
 from starlette import status
-
+from src.app.infrastructure.i18n.translate import Translate
 from src.auth.domain.auth_provider import AuthProvider
 from src.basic_auth.application.create_basic_user_interactor import CreateBasicUserInteractor
 from src.basic_auth.domain.basic_auth_repository import BasicAuthRepository
@@ -20,6 +19,7 @@ class TestCreateBasicUserInteractor:
 
     def test_run(self):
         mock_auth_repository = MagicMock(spec=BasicAuthRepository)
+        translate_service = Translate()
 
         txt_hasher = TextHasher(self.auth_user_dto.password)
         encrypted_password = txt_hasher.hash_text()
@@ -32,7 +32,8 @@ class TestCreateBasicUserInteractor:
         basic_auth_user_entity.encrypted_password = encrypted_password
         basic_auth_user_entity.provider = AuthProvider.email.value
         mock_auth_repository.create.return_value = basic_auth_user_entity
-        interactor = CreateBasicUserInteractor(basic_auth_repository=mock_auth_repository)
+        interactor = CreateBasicUserInteractor(basic_auth_repository=mock_auth_repository,
+                                               translate_service=translate_service)
 
         # Case 1: All fields are valid
         result = interactor.run(self.auth_user_dto)
@@ -40,10 +41,12 @@ class TestCreateBasicUserInteractor:
         assert result.data[0].first_name == basic_auth_user_entity.first_name
         assert result.data[0].last_name == basic_auth_user_entity.last_name
         assert result.http_status == status.HTTP_201_CREATED
-        assert result.message == 'Usuario creado exitosamente'
+
+        assert result.message == translate_service.text('entities.user.created')
 
         # Case 2: Verify that the password is encrypted
         result = txt_hasher.verify_text(encrypted_password)
         assert result is True
+
 
 

@@ -6,7 +6,6 @@ from src.common.infrastructure.user_profile_entity import UserProfileEntity
 
 
 class PostgresBasicAuthRepository(BasicAuthRepository):
-
     def __init__(self, db_session: Session):
         self.db_session = db_session
 
@@ -24,3 +23,8 @@ class PostgresBasicAuthRepository(BasicAuthRepository):
         self.db_session.add(auth_user_profile)
         self.db_session.commit()
         return auth_user
+
+    def get_by_email(self, email: str) -> BasicAuthUserEntity:
+        return self.db_session.query(BasicAuthUserEntity).filter(BasicAuthUserEntity.email == email).first()
+
+

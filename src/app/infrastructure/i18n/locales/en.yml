@@ -1,0 +1,35 @@
+en:
+     # This is the translation for the controlled errors in the application
+     api:
+         errors:
+             email_already_exists:
+                 code: "002"
+                 message: "Email is already in use"
+                 description: "The email that is entered for registration is already in use"
+
+
+     # This is the translation for the Entity classes and their attributes
+     entities:
+         user:
+             created: "User created successfully"
+             attributes:
+                 provider:
+                     not_valid: "The 'provider' attribute is not valid"
+
+     # This is the translation for the InputValidator class
+     inputs:
+         validation:
+             string:
+                 not_blank: "The '{name}' attribute cannot be blank"
+                 not_empty: "The '{name}' attribute cannot be empty"
+                 length:
+                     min_max: "The attribute '{name}' must have between {min} and {max} characters"
+                     min: "Attribute '{name}' must have at least {min} characters"
+                     max: "The attribute '{name}' must have a maximum of {max} characters"
+             e-mail:
+                 not_valid: "The '{name}' attribute is not a valid email"
+             integer:
+                 not_valid: "The attribute '{name}' is not a valid integer"
+                 value_between: "The '{name}' attribute must be between {min} and {max}"
+             boolean:
+                 not_valid: "The attribute '{name}' is not a valid boolean value"

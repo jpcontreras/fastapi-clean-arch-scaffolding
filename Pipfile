@@ -21,6 +21,7 @@ pytest-mock = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
 requests = "*"
 httpx = "*"
+pyi18n-v2 = "*"
 
 [dev-packages]
 

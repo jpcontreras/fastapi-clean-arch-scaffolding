@@ -1,39 +1,8 @@
-from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from starlette import status
-from main import app
-from src.app.infrastructure.db.postgresql_connect import get_db
-from src.common.infrastructure.user_entity import UserEntity
-from src.common.infrastructure.user_profile_entity import UserProfileEntity
-import os
-
-DB_URL = f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@db:5432/{os.getenv('POSTGRES_DB')}"
-engine = create_engine(DB_URL)
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+from tests.base_integration_test import BaseIntegrationTest, test_client
 
 
-def override_get_db():
-    db = TestingSessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-app.dependency_overrides[get_db] = override_get_db
-test_client = TestClient(app)
-
-
-def setup_module(module):
-    session = TestingSessionLocal()
-    session.query(UserProfileEntity).delete()
-    session.commit()
-    session.query(UserEntity).delete()
-    session.commit()
-
-
-class TestBasicAuthRoutes:
+class TestBasicAuthRoutes(BaseIntegrationTest):
 
     def test_post_signup(self):
         # GET /v1/auth/basic/signup
@@ -47,16 +16,16 @@ class TestBasicAuthRoutes:
                 'last_name': ''
             }
         )
-        assert response.status_code == 422
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
         for error in response.json()['detail']:
             if error['loc'][1] == 'email':
-                assert error['msg'] == 'The email value is not a valid email'
+                assert error['msg'] == self.translate.text('inputs.validation.email.not_valid', name='email')
             if error['loc'][1] == 'password':
-                assert error['msg'] == 'The password value cannot be empty'
+                assert error['msg'] == self.translate.text('inputs.validation.string.not_empty', name='password')
             if error['loc'][1] == 'first_name':
-                assert error['msg'] == 'The first_name value cannot be empty'
+                assert error['msg'] == self.translate.text('inputs.validation.string.not_empty', name='first_name')
             if error['loc'][1] == 'last_name':
-                assert error['msg'] == 'The last_name value cannot be empty'
+                assert error['msg'] == self.translate.text('inputs.validation.string.not_empty', name='last_name')
 
         # Case 2: Should return 422 status code when the email field is invalid
         response = test_client.post(
@@ -68,10 +37,10 @@ class TestBasicAuthRoutes:
                 'last_name': 'Doe'
             }
         )
-        assert response.status_code == 422
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
         for error in response.json()['detail']:
             if error['loc'][1] == 'email':
-                assert error['msg'] == 'The email value is not a valid email'
+                assert error['msg'] == self.translate.text('inputs.validation.email.not_valid', name='email')
 
         # Case 3: Should return 422 status code when the password field is invalid
         response = test_client.post(
@@ -83,10 +52,10 @@ class TestBasicAuthRoutes:
                 'last_name': 'Doe'
             }
         )
-        assert response.status_code == 422
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
         for error in response.json()['detail']:
             if error['loc'][1] == 'password':
-                assert error['msg'] == 'The password value cannot be empty'
+                assert error['msg'] == self.translate.text('inputs.validation.string.not_empty', name='password')
 
         # Case 4: Should return 422 status code when the first_name field is invalid
         response = test_client.post(
@@ -98,10 +67,10 @@ class TestBasicAuthRoutes:
                 'last_name': 'Doe'
             }
         )
-        assert response.status_code == 422
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
         for error in response.json()['detail']:
             if error['loc'][1] == 'first_name':
-                assert error['msg'] == 'The first_name value cannot be empty'
+                assert error['msg'] == self.translate.text('inputs.validation.string.not_empty', name='first_name')
 
         # Case 5: Should return 422 status code when the last_name field is invalid
         response = test_client.post(
@@ -113,10 +82,10 @@ class TestBasicAuthRoutes:
                 'last_name': ''
             }
         )
-        assert response.status_code == 422
+        assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
         for error in response.json()['detail']:
             if error['loc'][1] == 'last_name':
-                assert error['msg'] == 'The last_name value cannot be empty'
+                assert error['msg'] == self.translate.text('inputs.validation.string.not_empty', name='last_name')
 
         # Case 6: Should return 201 status code when the request body is valid
         response = test_client.post(
