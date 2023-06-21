@@ -26,5 +26,3 @@ class PostgresBasicAuthRepository(BasicAuthRepository):
 
     def get_by_email(self, email: str) -> BasicAuthUserEntity:
         return self.db_session.query(BasicAuthUserEntity).filter(BasicAuthUserEntity.email == email).first()
-
-

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 from pydantic import BaseModel
+from starlette import status
 from src.app.domain.base_dto import BaseDto
 from src.basic_auth.domain.basic_auth_user_dto import BasicAuthUserDto
 
@@ -24,7 +25,7 @@ class BaseInteractor(ABC):
     @abstractmethod
     def __init__(self):
         # Initialize common interactor attributes
-        pass
+        self.translate = None
 
     @abstractmethod
     def process(self, input_dto: BaseDto) -> OutputSuccessContext | OutputErrorContext:
@@ -39,6 +40,15 @@ class BaseInteractor(ABC):
         pass
 
     def run(self, input_dto: BaseDto) -> OutputSuccessContext | OutputErrorContext:
-        # Public method to execute the interactor
-        self.validate(input_dto)
-        return self.process(input_dto)
+        try:
+            # Public method to execute the interactor
+            self.validate(input_dto)
+            return self.process(input_dto)
+        except Exception as e:
+            # TODO: Log error integration with Sentry or similar
+            return OutputErrorContext(
+                http_status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                code=self.translate.text('api.errors.unknown_error.code'),
+                message=self.translate.text('api.errors.unknown_error.message'),
+                description=self.translate.text('api.errors.unknown_error.description')
+            )

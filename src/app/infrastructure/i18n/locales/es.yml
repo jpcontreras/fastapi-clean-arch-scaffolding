@@ -6,6 +6,10 @@ es:
                 code: "002"
                 message: "Correo electrónico ya se encuentra en uso"
                 description: "El correo que se ingresa para el registro ya esta en uso"
+            unknown_error:
+                code: "006"
+                message: "Error desconocido"
+                description: "Error desconocido en el servidor"
 
 
     # This is the translation for the Entity classes and their attributes
